@@ -55,6 +55,8 @@
       border-radius: 12px;
       margin-bottom: 1rem;
       box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      user-select: none;
+      pointer-events: none;
     }
 
     aside h1 {
@@ -108,6 +110,8 @@
 
       .grid {
         column-count: 2;
+        column-gap: 0.8rem;
+        padding-top: 4.5rem;
       }
     }
 
@@ -121,6 +125,9 @@
       animation: fadeIn 1s forwards;
       break-inside: avoid;
       background-color: #fff;
+      pointer-events: none;
+      user-drag: none;
+      -webkit-user-drag: none;
     }
 
     .grid img:hover {
@@ -143,6 +150,7 @@
       align-items: center;
       justify-content: space-between;
       z-index: 1001;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
 
     .topbar h1 {
@@ -188,10 +196,11 @@
     }
 
     .mobile-menu img {
-      width: 120px;
+      width: 100px;
       border-radius:12px;
       margin-bottom:1rem;
       box-shadow:0 4px 20px rgba(0,0,0,0.1);
+      pointer-events: none;
     }
 
     .mobile-menu nav {
@@ -253,7 +262,7 @@
 
   <main>
     <div class="grid">
-      <!-- your images here -->
+      <!-- Your 26 images go here -->
       <img src="Images/Homepage/img1.jpg" alt="">
       <img src="Images/Homepage/img2.jpg" alt="">
       <img src="Images/Homepage/img3.jpg" alt="">
@@ -280,8 +289,7 @@
       <img src="Images/Homepage/img24.png" alt="">
       <img src="Images/Homepage/img25.jpg" alt="">
       <img src="Images/Homepage/img26.png" alt="">
-      
-      <!-- ... up to 26 images -->
+      <!-- ... add more images -->
     </div>
   </main>
 
@@ -290,7 +298,7 @@
       document.body.classList.add('fade-in');
     });
 
-    function toggleMenu(){
+    function toggleMenu() {
       document.getElementById('mobileMenu').classList.toggle('active');
       document.getElementById('overlay').classList.toggle('active');
     }
