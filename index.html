@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Vkaptures | Home</title>
   <style>
-    /* Load your custom fonts */
     @font-face {
       font-family: 'Baliung';
       src: url('Baliung.ttf') format('truetype');
@@ -24,16 +23,17 @@
       --text-dark: #222;
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       background-color: var(--bg);
       color: var(--text-dark);
       font-family: 'Deltha', sans-serif;
       line-height: 1.6;
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+    body.fade-in {
+      opacity: 1;
     }
 
     header {
@@ -50,9 +50,7 @@
     }
     header h1 {
       font-family: 'Baliung', serif;
-      color: var(--text-dark);
       font-size: 2.5rem;
-      font-weight: normal;
       letter-spacing: 1px;
     }
     header p {
@@ -108,21 +106,13 @@
     }
 
     @media (max-width: 1024px) {
-      .grid {
-        column-count: 2;
-      }
+      .grid { column-count: 2; }
     }
     @media (max-width: 600px) {
-      .grid {
-        column-count: 1;
-      }
+      .grid { column-count: 1; }
     }
 
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
-      }
-    }
+    @keyframes fadeIn { to { opacity: 1; } }
 
     .lightbox {
       position: fixed;
@@ -169,6 +159,7 @@
   </nav>
 
   <section class="grid">
+    <!-- Mix of categories -->
     <img src="https://source.unsplash.com/600x800/?portrait,1" alt="Mixed 1">
     <img src="https://source.unsplash.com/600x800/?couple,1" alt="Mixed 2">
     <img src="https://source.unsplash.com/600x800/?baby,1" alt="Mixed 3">
@@ -189,6 +180,10 @@
   </div>
 
   <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      document.body.classList.add('fade-in');
+    });
+
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = lightbox.querySelector('img');
     const galleryImages = document.querySelectorAll('.grid img');
