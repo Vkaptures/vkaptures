@@ -29,6 +29,11 @@
       color: var(--text-dark);
       font-family: 'Deltha', sans-serif;
       line-height: 1.6;
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+    body.fade-in {
+      opacity: 1;
     }
 
     header {
@@ -140,7 +145,7 @@
   <header>
     <img src="IMG_6813.PNG" alt="Vkaptures Logo">
     <h1>Vkaptures</h1>
-    <p>Couples Photography Collection</p>
+    <p>Couple Photography Collection</p>
   </header>
 
   <nav>
@@ -167,6 +172,10 @@
   </div>
 
   <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      document.body.classList.add('fade-in');
+    });
+
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = lightbox.querySelector('img');
     const galleryImages = document.querySelectorAll('.grid img');
