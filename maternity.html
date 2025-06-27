@@ -87,4 +87,101 @@
     .grid img {
       width: 100%;
       margin-bottom: 1.5rem;
-      borde
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease, opacity 0.4s ease;
+      opacity: 0;
+      animation: fadeIn 1s forwards;
+      break-inside: avoid;
+      background-color: #fff;
+    }
+    .grid img:hover {
+      transform: scale(1.02);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+    }
+
+    @media (max-width: 1024px) {
+      .grid { column-count: 2; }
+    }
+    @media (max-width: 600px) {
+      .grid { column-count: 1; }
+    }
+
+    @keyframes fadeIn { to { opacity: 1; } }
+
+    .lightbox {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.85);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 80vh;
+      border-radius: 10px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+    }
+    .lightbox.active { display: flex; }
+    .lightbox:after {
+      content: "✖";
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+      font-size: 2rem;
+      color: white;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="IMG_6813.PNG" alt="Vkaptures Logo">
+    <h1>Vkaptures</h1>
+    <p>Maternity Photography Collection</p>
+  </header>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="portraits.html">Portraits</a>
+    <a href="couples.html">Couples</a>
+    <a href="family.html">Family</a>
+    <a href="maternity.html">Maternity</a>
+    <a href="babyshoot.html">Babyshoot</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <section class="grid">
+    <img src="https://source.unsplash.com/600x800/?maternity,1" alt="Maternity 1">
+    <img src="https://source.unsplash.com/600x800/?maternity,2" alt="Maternity 2">
+    <img src="https://source.unsplash.com/600x800/?maternity,3" alt="Maternity 3">
+    <img src="https://source.unsplash.com/600x800/?maternity,4" alt="Maternity 4">
+    <img src="https://source.unsplash.com/600x800/?maternity,5" alt="Maternity 5">
+    <img src="https://source.unsplash.com/600x800/?maternity,6" alt="Maternity 6">
+  </section>
+
+  <div class="lightbox" id="lightbox">
+    <img src="" alt="Preview">
+  </div>
+
+  <script>
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = lightbox.querySelector('img');
+    const galleryImages = document.querySelectorAll('.grid img');
+
+    galleryImages.forEach(img => {
+      img.addEventListener('click', () => {
+        lightbox.classList.add('active');
+        lightboxImg.src = img.src;
+      });
+    });
+
+    lightbox.addEventListener('click', () => {
+      lightbox.classList.remove('active');
+      lightboxImg.src = '';
+    });
+  </script>
+</body>
+</html>
