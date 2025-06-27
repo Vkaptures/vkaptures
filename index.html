@@ -25,6 +25,8 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      user-select: none;
+      -webkit-user-drag: none;
     }
 
     body {
@@ -40,6 +42,12 @@
       opacity: 1;
     }
 
+    img {
+      pointer-events: none;
+      -webkit-user-drag: none;
+      user-select: none;
+    }
+
     aside {
       width: 240px;
       background-color: var(--sidebar-bg);
@@ -48,6 +56,9 @@
       flex-direction: column;
       align-items: center;
       flex-shrink: 0;
+      height: 100vh;
+      position: sticky;
+      top: 0;
     }
 
     aside img {
@@ -55,8 +66,6 @@
       border-radius: 12px;
       margin-bottom: 1rem;
       box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-      user-select: none;
-      pointer-events: none;
     }
 
     aside h1 {
@@ -95,35 +104,20 @@
     }
 
     .grid {
-      column-count: 4;
-      column-gap: 1.5rem;
-    }
-
-    @media (max-width: 768px) {
-      aside {
-        display: none;
-      }
-
-      .topbar {
-        display: flex;
-      }
-
-      .grid {
-        column-count: 2;
-        column-gap: 0.8rem;
-        padding-top: 4.5rem;
-      }
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1rem;
     }
 
     .grid img {
       width: 100%;
-      margin-bottom: 1.5rem;
+      display: block;
       border-radius: 12px;
       box-shadow: 0 8px 24px rgba(0,0,0,0.06);
       transition: transform 0.3s ease, opacity 0.4s ease;
       opacity: 0;
       animation: fadeIn 1s forwards;
-      break-inside: avoid;
       background-color: #fff;
       pointer-events: none;
       user-drag: none;
@@ -141,87 +135,107 @@
 
     .topbar {
       display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      background: var(--sidebar-bg);
-      padding: 1rem;
-      align-items: center;
-      justify-content: space-between;
-      z-index: 1001;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
 
-    .topbar h1 {
-      font-family: 'Baliung', serif;
-      font-size: 1.5rem;
-    }
+    /* Mobile Styles */
+    @media (max-width: 768px) {
+      aside {
+        display: none;
+      }
 
-    .menu-button {
-      font-size: 1.8rem;
-      cursor: pointer;
-      user-select: none;
-    }
+      .topbar {
+        display: flex;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: var(--sidebar-bg);
+        padding: 0.8rem 1rem;
+        align-items: center;
+        justify-content: space-between;
+        z-index: 1001;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      }
 
-    .mobile-menu {
-      position: fixed;
-      top: 0;
-      left: -260px;
-      width: 240px;
-      height: 100%;
-      background: var(--sidebar-bg);
-      padding: 2rem 1rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      transition: left 0.3s ease;
-      z-index: 1002;
-    }
+      .topbar h1 {
+        font-family: 'Baliung', serif;
+        font-size: 1.4rem;
+      }
 
-    .mobile-menu.active {
-      left: 0;
-    }
+      .menu-button {
+        font-size: 1.8rem;
+        cursor: pointer;
+        user-select: none;
+      }
 
-    .overlay {
-      position: fixed;
-      top:0; left:0; right:0; bottom:0;
-      background: rgba(0,0,0,0.4);
-      display: none;
-      z-index:1000;
-    }
+      main {
+        padding: 1rem;
+        padding-top: 4.5rem;
+      }
 
-    .overlay.active {
-      display: block;
-    }
+      .grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.8rem;
+      }
 
-    .mobile-menu img {
-      width: 100px;
-      border-radius:12px;
-      margin-bottom:1rem;
-      box-shadow:0 4px 20px rgba(0,0,0,0.1);
-      pointer-events: none;
-    }
+      .mobile-menu {
+        position: fixed;
+        top: 0;
+        left: -260px;
+        width: 240px;
+        height: 100%;
+        background: var(--sidebar-bg);
+        padding: 2rem 1rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transition: left 0.3s ease;
+        z-index: 1002;
+      }
 
-    .mobile-menu nav {
-      display: flex;
-      flex-direction: column;
-      gap:0.8rem;
-      width:100%;
-    }
+      .mobile-menu.active {
+        left: 0;
+      }
 
-    .mobile-menu nav a {
-      text-decoration: none;
-      color: var(--text-color);
-      font-family: 'Deltha', sans-serif;
-      padding: 0.6rem 1rem;
-      border-radius:6px;
-      transition: background-color 0.3s, color 0.3s;
-    }
+      .overlay {
+        position: fixed;
+        top:0; left:0; right:0; bottom:0;
+        background: rgba(0,0,0,0.4);
+        display: none;
+        z-index:1000;
+      }
 
-    .mobile-menu nav a:hover {
-      background-color: var(--hover-color);
-      color:#fff;
+      .overlay.active {
+        display: block;
+      }
+
+      .mobile-menu img {
+        width: 90px;
+        border-radius:12px;
+        margin-bottom:1rem;
+        box-shadow:0 4px 20px rgba(0,0,0,0.1);
+      }
+
+      .mobile-menu nav {
+        display: flex;
+        flex-direction: column;
+        gap:0.8rem;
+        width:100%;
+      }
+
+      .mobile-menu nav a {
+        text-decoration: none;
+        color: var(--text-color);
+        font-family: 'Deltha', sans-serif;
+        padding: 0.6rem 1rem;
+        border-radius:6px;
+        transition: background-color 0.3s, color 0.3s;
+      }
+
+      .mobile-menu nav a:hover {
+        background-color: var(--hover-color);
+        color:#fff;
+      }
     }
   </style>
 </head>
@@ -248,7 +262,7 @@
   <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
 
   <div class="mobile-menu" id="mobileMenu">
-    <img src="IMG_6813.PNG" alt="Vkaptures Logo" />
+    <img src="Images/Homepage/IMG_6813.PNG" alt="Vkaptures Logo" />
     <nav>
       <a href="index.html">Home</a>
       <a href="portraits.html">Portraits</a>
@@ -289,7 +303,7 @@
       <img src="Images/Homepage/img24.png" alt="">
       <img src="Images/Homepage/img25.jpg" alt="">
       <img src="Images/Homepage/img26.png" alt="">
-      <!-- ... add more images -->
+      <!-- ... all the rest of your 26 images ... -->
     </div>
   </main>
 
@@ -302,6 +316,9 @@
       document.getElementById('mobileMenu').classList.toggle('active');
       document.getElementById('overlay').classList.toggle('active');
     }
+
+    // Disable right-click
+    document.addEventListener('contextmenu', event => event.preventDefault());
   </script>
 </body>
 </html>
