@@ -4,16 +4,32 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Vkaptures | Home</title>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
   <style>
+    /* Load your custom fonts from local files */
+    @font-face {
+      font-family: 'Baliung';
+      src: url('Baliung.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'Deltha';
+      src: url('Deltha.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+
     :root {
-      --bg: #EEE2DD;
-      --header-bg: #4B4139;
-      --nav-bg: #50574C;
+      --bg: #F9F9F9;
+      --header-bg: #FFFFFF;
+      --nav-bg: #FFFFFF;
+      --nav-text: #222222;
       --nav-hover: #A65865;
       --accent: #C5AE91;
-      --text-dark: #2B2B2B;
-      --text-light: #FFFFFF;
+      --text-dark: #222222;
     }
 
     * {
@@ -22,32 +38,35 @@
       box-sizing: border-box;
     }
     body {
-      font-family: 'Plus Jakarta Sans', sans-serif;
       background-color: var(--bg);
       color: var(--text-dark);
+      font-family: 'Deltha', sans-serif;
+      line-height: 1.6;
     }
 
     header {
       background-color: var(--header-bg);
       text-align: center;
-      padding: 3rem 1rem 1rem;
+      padding: 2.5rem 1rem 1rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
     }
     header img {
-      width: 150px;
+      width: 140px;
       border-radius: 12px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+      margin-bottom: 1rem;
     }
     header h1 {
-      color: var(--text-light);
-      font-size: 2rem;
-      margin-top: 1rem;
-      font-weight: 600;
+      font-family: 'Baliung', serif;
+      color: var(--text-dark);
+      font-size: 2.5rem;
+      font-weight: normal;
       letter-spacing: 1px;
     }
     header p {
-      color: var(--accent);
-      font-size: 1rem;
-      margin-top: 0.5rem;
+      color: #555;
+      font-size: 1.1rem;
+      margin-top: 0.3rem;
     }
 
     nav {
@@ -57,48 +76,51 @@
       gap: 1.2rem;
       padding: 1rem;
       background-color: var(--nav-bg);
-      border-bottom: 2px solid var(--accent);
+      border-bottom: 1px solid #e0e0e0;
     }
     nav a {
       text-decoration: none;
-      color: var(--text-light);
-      font-weight: 600;
-      padding: 0.3rem 0.6rem;
+      color: var(--nav-text);
+      font-family: 'Deltha', sans-serif;
+      font-weight: 500;
+      padding: 0.4rem 0.8rem;
       border-radius: 6px;
-      transition: background-color 0.3s ease, color 0.3s ease;
+      transition: all 0.3s ease;
     }
     nav a:hover {
       background-color: var(--nav-hover);
-      color: var(--text-light);
+      color: #fff;
     }
 
     .grid {
       column-count: 3;
       column-gap: 1.5rem;
-      padding: 2rem;
+      padding: 2rem 1rem;
+      max-width: 1400px;
+      margin: 0 auto;
     }
     .grid img {
       width: 100%;
       margin-bottom: 1.5rem;
       border-radius: 12px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
       transition: transform 0.3s ease, opacity 0.4s ease;
       opacity: 0;
       animation: fadeIn 1s forwards;
       break-inside: avoid;
+      background-color: #fff;
     }
     .grid img:hover {
-      transform: scale(1.03);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      transform: scale(1.02);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.12);
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 1024px) {
       .grid {
         column-count: 2;
       }
     }
-
-    @media (max-width: 480px) {
+    @media (max-width: 600px) {
       .grid {
         column-count: 1;
       }
@@ -155,7 +177,6 @@
   </nav>
 
   <section class="grid">
-    <!-- Mix of categories -->
     <img src="https://source.unsplash.com/600x800/?portrait,1" alt="Mixed 1">
     <img src="https://source.unsplash.com/600x800/?couple,1" alt="Mixed 2">
     <img src="https://source.unsplash.com/600x800/?baby,1" alt="Mixed 3">
