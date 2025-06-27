@@ -123,4 +123,71 @@
       gap: 1rem;
     }
 
-    input, texta
+    input, textarea {
+      padding: 0.8rem;
+      font-family: 'Deltha', sans-serif;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      transition: border-color 0.3s;
+    }
+    input:focus, textarea:focus {
+      border-color: var(--accent);
+      outline: none;
+    }
+
+    button {
+      background-color: var(--accent);
+      color: #fff;
+      padding: 0.8rem;
+      font-family: 'Deltha', sans-serif;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: #48b76c;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="IMG_6813.PNG" alt="Vkaptures Logo">
+    <h1>Vkaptures</h1>
+    <p>Get in Touch</p>
+  </header>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="portraits.html">Portraits</a>
+    <a href="couples.html">Couples</a>
+    <a href="family.html">Family</a>
+    <a href="maternity.html">Maternity</a>
+    <a href="babyshoot.html">Babyshoot</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <section class="contact-section">
+    <h2>Contact Me</h2>
+    <p>You can use the form below or the Google Form option to get in touch. Your memories deserve the best.</p>
+    <div class="contact-options">
+      <!-- Google Form Embed -->
+      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfDUMMY_LINK/viewform?embedded=true" height="600" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+      
+      <!-- Direct Email Form -->
+      <form action="mailto:your-email@example.com" method="post" enctype="text/plain">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+        <button type="submit">Send Email</button>
+      </form>
+    </div>
+  </section>
+
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      document.body.classList.add('fade-in');
+    });
+  </script>
+</body>
+</html>
