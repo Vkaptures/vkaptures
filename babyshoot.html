@@ -29,6 +29,11 @@
       color: var(--text-dark);
       font-family: 'Deltha', sans-serif;
       line-height: 1.6;
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+    body.fade-in {
+      opacity: 1;
     }
 
     header {
@@ -154,12 +159,12 @@
   </nav>
 
   <section class="grid">
-    <img src="https://source.unsplash.com/600x800/?baby,1" alt="Baby 1">
-    <img src="https://source.unsplash.com/600x800/?baby,2" alt="Baby 2">
-    <img src="https://source.unsplash.com/600x800/?baby,3" alt="Baby 3">
-    <img src="https://source.unsplash.com/600x800/?baby,4" alt="Baby 4">
-    <img src="https://source.unsplash.com/600x800/?baby,5" alt="Baby 5">
-    <img src="https://source.unsplash.com/600x800/?baby,6" alt="Baby 6">
+    <img src="https://source.unsplash.com/600x800/?baby,1" alt="Babyshoot 1">
+    <img src="https://source.unsplash.com/600x800/?baby,2" alt="Babyshoot 2">
+    <img src="https://source.unsplash.com/600x800/?baby,3" alt="Babyshoot 3">
+    <img src="https://source.unsplash.com/600x800/?baby,4" alt="Babyshoot 4">
+    <img src="https://source.unsplash.com/600x800/?baby,5" alt="Babyshoot 5">
+    <img src="https://source.unsplash.com/600x800/?baby,6" alt="Babyshoot 6">
   </section>
 
   <div class="lightbox" id="lightbox">
@@ -167,6 +172,10 @@
   </div>
 
   <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      document.body.classList.add('fade-in');
+    });
+
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = lightbox.querySelector('img');
     const galleryImages = document.querySelectorAll('.grid img');
