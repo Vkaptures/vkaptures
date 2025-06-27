@@ -15,20 +15,24 @@
     }
 
     :root {
-      --bg: #F9F9F9;
-      --header-bg: #FFFFFF;
-      --nav-bg: #FFFFFF;
-      --nav-text: #222;
+      --sidebar-bg: #C0C0C0;
       --nav-hover: #50C878;
-      --text-dark: #222;
+      --text-color: #222;
+      --bg-color: #F9F9F9;
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
-      background-color: var(--bg);
-      color: var(--text-dark);
       font-family: 'Deltha', sans-serif;
-      line-height: 1.6;
+      color: var(--text-color);
+      background-color: var(--bg-color);
+      display: flex;
+      min-height: 100vh;
       opacity: 0;
       transition: opacity 0.6s ease;
     }
@@ -36,168 +40,139 @@
       opacity: 1;
     }
 
-    header {
-      background-color: var(--header-bg);
-      text-align: center;
-      padding: 2.5rem 1rem 1rem;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    aside {
+      width: 240px;
+      background-color: var(--sidebar-bg);
+      padding: 2rem 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
-    header img {
+
+    aside img {
       width: 140px;
       border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.12);
       margin-bottom: 1rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
     }
-    header h1 {
+
+    aside h1 {
       font-family: 'Baliung', serif;
-      font-size: 2.5rem;
-      letter-spacing: 1px;
-    }
-    header p {
-      color: #555;
-      font-size: 1.1rem;
-      margin-top: 0.3rem;
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      text-align: center;
     }
 
     nav {
       display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 1.2rem;
-      padding: 1rem;
-      background-color: var(--nav-bg);
-      border-bottom: 1px solid #e0e0e0;
+      flex-direction: column;
+      width: 100%;
+      gap: 0.8rem;
     }
+
     nav a {
       text-decoration: none;
-      color: var(--nav-text);
+      color: var(--text-color);
       font-family: 'Deltha', sans-serif;
-      font-weight: 500;
-      padding: 0.4rem 0.8rem;
+      padding: 0.6rem 1rem;
       border-radius: 6px;
-      transition: all 0.3s ease;
+      transition: background-color 0.3s, color 0.3s;
     }
+
     nav a:hover {
       background-color: var(--nav-hover);
       color: #fff;
     }
 
-    .grid {
-      column-count: 3;
-      column-gap: 1.5rem;
-      padding: 2rem 1rem;
-      max-width: 1400px;
-      margin: 0 auto;
+    main {
+      flex: 1;
+      padding: 2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      background-color: var(--bg-color);
+      overflow-y: auto;
     }
-    .grid img {
+
+    main img {
       width: 100%;
-      margin-bottom: 1.5rem;
       border-radius: 12px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.06);
       transition: transform 0.3s ease, opacity 0.4s ease;
       opacity: 0;
       animation: fadeIn 1s forwards;
-      break-inside: avoid;
       background-color: #fff;
     }
-    .grid img:hover {
+
+    main img:hover {
       transform: scale(1.02);
       box-shadow: 0 10px 30px rgba(0,0,0,0.12);
     }
 
-    @media (max-width: 1024px) {
-      .grid { column-count: 2; }
-    }
-    @media (max-width: 600px) {
-      .grid { column-count: 1; }
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
     }
 
-    @keyframes fadeIn { to { opacity: 1; } }
+    @media (max-width: 768px) {
+      aside {
+        width: 200px;
+      }
+      aside h1 {
+        font-size: 1.8rem;
+      }
+    }
 
-    .lightbox {
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.85);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 1000;
-    }
-    .lightbox img {
-      max-width: 90vw;
-      max-height: 80vh;
-      border-radius: 10px;
-      box-shadow: 0 12px 40px rgba(0,0,0,0.4);
-    }
-    .lightbox.active { display: flex; }
-    .lightbox:after {
-      content: "✖";
-      position: absolute;
-      top: 2rem;
-      right: 2rem;
-      font-size: 2rem;
-      color: white;
-      cursor: pointer;
-    }
   </style>
 </head>
 <body>
-  <header>
-    <img src="IMG_6813.PNG" alt="Vkaptures Logo">
+  <aside>
+    <img src="IMG_6813.PNG" alt="Vkaptures Logo" />
     <h1>Vkaptures</h1>
-    <p>Capturing stories, one frame at a time.</p>
-  </header>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="portraits.html">Portraits</a>
+      <a href="couples.html">Couples</a>
+      <a href="family.html">Family</a>
+      <a href="maternity.html">Maternity</a>
+      <a href="babyshoot.html">Babyshoot</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </aside>
 
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="portraits.html">Portraits</a>
-    <a href="couples.html">Couples</a>
-    <a href="family.html">Family</a>
-    <a href="maternity.html">Maternity</a>
-    <a href="babyshoot.html">Babyshoot</a>
-    <a href="contact.html">Contact</a>
-  </nav>
-
-  <section class="grid">
-    <!-- Mix of categories -->
-    <img src="https://source.unsplash.com/600x800/?portrait,1" alt="Mixed 1">
-    <img src="https://source.unsplash.com/600x800/?couple,1" alt="Mixed 2">
-    <img src="https://source.unsplash.com/600x800/?baby,1" alt="Mixed 3">
-    <img src="https://source.unsplash.com/600x800/?maternity,1" alt="Mixed 4">
-    <img src="https://source.unsplash.com/600x800/?family,1" alt="Mixed 5">
-    <img src="https://source.unsplash.com/600x800/?portrait,2" alt="Mixed 6">
-    <img src="https://source.unsplash.com/600x800/?couple,2" alt="Mixed 7">
-    <img src="https://source.unsplash.com/600x800/?baby,2" alt="Mixed 8">
-    <img src="https://source.unsplash.com/600x800/?maternity,2" alt="Mixed 9">
-    <img src="https://source.unsplash.com/600x800/?family,2" alt="Mixed 10">
-    <img src="https://source.unsplash.com/600x800/?portrait,3" alt="Mixed 11">
-    <img src="https://source.unsplash.com/600x800/?family,3" alt="Mixed 12">
-    <img src="https://source.unsplash.com/600x800/?baby,3" alt="Mixed 13">
-  </section>
-
-  <div class="lightbox" id="lightbox">
-    <img src="" alt="Preview">
-  </div>
+  <main>
+    <img src="https://source.unsplash.com/600x800/?photography,1" alt="">
+    <img src="https://source.unsplash.com/600x800/?photography,2" alt="">
+    <img src="https://source.unsplash.com/600x800/?photography,3" alt="">
+    <img src="https://source.unsplash.com/600x800/?photography,4" alt="">
+    <img src="https://source.unsplash.com/600x800/?photography,5" alt="">
+    <img src="https://source.unsplash.com/600x800/?photography,6" alt="">
+    <img src="https://source.unsplash.com/600x800/?photography,7" alt="">
+    <img src="https://source.unsplash.com/600x800/?photography,8" alt="">
+    <img src="https://source.unsplash.com/600x800/?photography,9" alt="">
+    <img src="https://source.unsplash.com/600x800/?photography,10" alt="">
+    <img src="https://source.unsplash.com/600x800/?photography,11" alt="">
+    <img src="https://source.unsplash.com/600x800/?photography,12" alt="">
+    <img src="https://source.unsplash.com/600x800/?photography,13" alt="">
+    <img src="https://source.unsplash.com/600x800/?photography,14" alt="">
+    <img src="https://source.unsplash.com/600x800/?photography,15" alt="">
+    <img src="https://source.unsplash.com/600x800/?photography,16" alt="">
+    <img src="https://source.unsplash.com/600x800/?photography,17" alt="">
+    <img src="https://source.unsplash.com/600x800/?photography,18" alt="">
+    <img src="https://source.unsplash.com/600x800/?photography,19" alt="">
+    <img src="https://source.unsplash.com/600x800/?photography,20" alt="">
+    <img src="https://source.unsplash.com/600x800/?photography,21" alt="">
+    <img src="https://source.unsplash.com/600x800/?photography,22" alt="">
+    <img src="https://source.unsplash.com/600x800/?photography,23" alt="">
+    <img src="https://source.unsplash.com/600x800/?photography,24" alt="">
+    <img src="https://source.unsplash.com/600x800/?photography,25" alt="">
+    <img src="https://source.unsplash.com/600x800/?photography,26" alt="">
+  </main>
 
   <script>
     window.addEventListener('DOMContentLoaded', () => {
       document.body.classList.add('fade-in');
-    });
-
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = lightbox.querySelector('img');
-    const galleryImages = document.querySelectorAll('.grid img');
-
-    galleryImages.forEach(img => {
-      img.addEventListener('click', () => {
-        lightbox.classList.add('active');
-        lightboxImg.src = img.src;
-      });
-    });
-
-    lightbox.addEventListener('click', () => {
-      lightbox.classList.remove('active');
-      lightboxImg.src = '';
     });
   </script>
 </body>
