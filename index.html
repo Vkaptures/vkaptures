@@ -98,6 +98,14 @@
     }
 
     @media (max-width: 768px) {
+      aside {
+        display: none;
+      }
+
+      .topbar {
+        display: flex;
+      }
+
       .grid {
         column-count: 2;
       }
@@ -121,11 +129,91 @@
     }
 
     @keyframes fadeIn {
-      to {
-        opacity: 1;
-      }
+      to { opacity: 1; }
     }
 
+    .topbar {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: var(--sidebar-bg);
+      padding: 1rem;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 1001;
+    }
+
+    .topbar h1 {
+      font-family: 'Baliung', serif;
+      font-size: 1.5rem;
+    }
+
+    .menu-button {
+      font-size: 1.8rem;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      left: -260px;
+      width: 240px;
+      height: 100%;
+      background: var(--sidebar-bg);
+      padding: 2rem 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: left 0.3s ease;
+      z-index: 1002;
+    }
+
+    .mobile-menu.active {
+      left: 0;
+    }
+
+    .overlay {
+      position: fixed;
+      top:0; left:0; right:0; bottom:0;
+      background: rgba(0,0,0,0.4);
+      display: none;
+      z-index:1000;
+    }
+
+    .overlay.active {
+      display: block;
+    }
+
+    .mobile-menu img {
+      width: 120px;
+      border-radius:12px;
+      margin-bottom:1rem;
+      box-shadow:0 4px 20px rgba(0,0,0,0.1);
+    }
+
+    .mobile-menu nav {
+      display: flex;
+      flex-direction: column;
+      gap:0.8rem;
+      width:100%;
+    }
+
+    .mobile-menu nav a {
+      text-decoration: none;
+      color: var(--text-color);
+      font-family: 'Deltha', sans-serif;
+      padding: 0.6rem 1rem;
+      border-radius:6px;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .mobile-menu nav a:hover {
+      background-color: var(--hover-color);
+      color:#fff;
+    }
   </style>
 </head>
 <body>
@@ -143,9 +231,29 @@
     </nav>
   </aside>
 
+  <div class="topbar">
+    <h1>Vkaptures</h1>
+    <div class="menu-button" onclick="toggleMenu()">☰</div>
+  </div>
+
+  <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <img src="IMG_6813.PNG" alt="Vkaptures Logo" />
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="portraits.html">Portraits</a>
+      <a href="couples.html">Couples</a>
+      <a href="family.html">Family</a>
+      <a href="maternity.html">Maternity</a>
+      <a href="babyshoot.html">Babyshoot</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+
   <main>
     <div class="grid">
-      <!-- 26 images (placeholders) -->
+      <!-- your images here -->
       <img src="Images/Homepage/img1.jpg" alt="">
       <img src="Images/Homepage/img2.jpg" alt="">
       <img src="Images/Homepage/img3.jpg" alt="">
@@ -172,6 +280,8 @@
       <img src="Images/Homepage/img24.png" alt="">
       <img src="Images/Homepage/img25.jpg" alt="">
       <img src="Images/Homepage/img26.png" alt="">
+      
+      <!-- ... up to 26 images -->
     </div>
   </main>
 
@@ -179,6 +289,11 @@
     window.addEventListener('DOMContentLoaded', () => {
       document.body.classList.add('fade-in');
     });
+
+    function toggleMenu(){
+      document.getElementById('mobileMenu').classList.toggle('active');
+      document.getElementById('overlay').classList.toggle('active');
+    }
   </script>
 </body>
 </html>
